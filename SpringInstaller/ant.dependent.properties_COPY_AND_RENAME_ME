@@ -1,0 +1,45 @@
+# <dependent> properties file for spring Java Skirmish AIs
+# This is used when you do not use the spring repository for compiling.
+#
+# Paths are relative to the project home (which is ../ from this file).
+# All values are optional, and listed here with their defaults.
+#
+# The <dependent> default assumes that you have the spring source,
+# and do a spring in-source build as it is the default with CMake and SCons,
+# and as the buildbot does it.
+#
+# build-dir:    ${spring.home}/AI/Skirmish/${ai.name}/
+# install-dir:  ${spring.home}/game/AI/Skirmish/${ai.name}/${ai.version}/
+#
+# This file is loaded from within build.xml,
+# but only if no "jlibs-interface/" dir is present.
+#
+
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+# DON'T FORGET TO REMOVE THE SEMICOLON BEFORE THE ROWS
+# ----------------------------------------------------
+# If you're using windows use slash / in the names
+# instead of backslash \
+# !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+# This is your spring home
+# Where you installed spring							<----- WINDOWS
+;spring.home=C:/Program Files (x86)/Spring
+# Use your .spring folder in your home. 				<----- LINUX
+;spring.home=/home/YOUR_USERNAME/.spring
+
+
+
+# Where HTML JavaDoc files will be generated
+;doc.dir=${dist.home}/AI/Skirmish/${skirmish.ai.name}/${skirmish.ai.version}/doc/jdoc
+
+# The destination, if you're using windows and need administration 			<----- WINDOWS
+# rights to write to the folder you installed spring in you can
+# use your My Games/Spring directory instead.
+;dist.home=C:/Users/YOUR_USERNAME/My Documents/My Games/Spring
+
+# * Here we look for AIInterface.jar
+# Usually /usr/share/games/spring/.. or /usr/local/share/games/spring/.. 	<----- LINUX
+# Use "locate AIInterface.jar" to find the folder.
+;ai.interface.build.home=/usr/share/games/spring/AI/Interfaces/Java/0.1
+

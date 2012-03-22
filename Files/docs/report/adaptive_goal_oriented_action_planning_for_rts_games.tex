@@ -1,0 +1,201 @@
+\documentclass[a4paper,pdftex,oneside]{Thesis}
+\usepackage[pdftex,usenames,dvipsnames]{color}
+\usepackage{paralist}
+\usepackage{float}
+\usepackage{multirow} 
+\usepackage[Lenny]{fncychap}
+\usepackage{makeidx}
+\usepackage[square, numbers, comma, sort&compress]{natbib}
+\usepackage{comment}
+
+\makeindex
+
+\hypersetup{urlcolor=blue, linkcolor=red, colorlinks=true}
+
+\graphicspath{{Figures/}}
+\newfloat{lstfloat}{thp}{1op}
+\floatname{lstfloat}{Listing}
+
+\definecolor{light-gray}{gray}{0.90}
+
+\setcounter{secnumdepth}{2}
+
+\lstset{% bananas
+	language=Java,
+	tabsize=2,
+	captionpos=t,
+	backgroundcolor=\color{light-gray},
+	frame=tb,
+	breaklines=true,
+	basicstyle=\small}
+
+\begin{document}
+\pagenumbering{alph}
+
+%% ---------------- FRONT MATTER ---------------------
+\frontmatter
+\authors{
+\texorpdfstring{\href{mailto:senth.wallace@gmail.com}{Matteus
+Magnusson}}{Matteus~Magnusson}~~~~\texorpdfstring{\href{mailto:kazzoa@gmail.com}{Tobias
+Hall}}{Tobias~Hall} }
+\title{Adaptive Goal Oriented Action Planning for RTS Games}
+\addresses{\deptname\\\univname} 
+\supervisor{Johan Hagelb\"{a}ck}  
+\examiner{Stefan Johansson}
+\date{\today} 
+\subject{}
+\keywords{}
+
+\maketitle
+
+\setstretch{1.3} 
+\fancyhead{}
+\rhead{\thepage} 
+\lhead{}
+\pagestyle{fancy} 
+\include{chapters/preface} 
+
+\lhead{\emph{Contents}} 
+\setcounter{tocdepth}{2} 
+\tableofcontents
+
+\lhead{\emph{List of Figures}}
+\listoffigures
+
+\lhead{\emph{List of Tables}}
+\listoftables
+
+\addtotoc{Listings} 
+\lhead{\emph{List of Listings}}
+\addtocontents{toc}{\vspace{1.5em}}
+\lstlistoflistings 
+
+
+%% ---------------- MAIN MATTER -----------------
+\mainmatter
+\pagestyle{fancy}
+\setstretch{1.1}
+\setlength{\parindent}{2em}
+\setlength{\parskip}{0.0ex}
+
+
+\include{chapters/introduction}
+\include{chapters/brief_description}
+\include{chapters/detailed_description}
+\include{chapters/result}
+\include{chapters/discussion}
+\include{chapters/conclusion_and_future_work}
+
+%% ---------------- APPENDIX ---------------
+\appendix
+\include{chapters/appendices} 
+
+%% ---------------- BACK MATTER ---------------
+\backmatter
+\label{Bibliography}
+\lhead{\emph{Bibliography}}  % Change the left side page header to "Bibliography"
+\bibliographystyle{unsrtnat}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliography{Bibliography}  % The references (bibliography) information are stored in the file named "Bibliography.bib"
+
+\clearpage
+\addtotoc{Index} 
+\printindex
+
+\end{document}
+
+% \usepackage[pdftex]{graphicx}
+% \usepackage[pdftex,bookmarks,colorlinks]{hyperref}
+% \usepackage{makeidx}
+% \usepackage[english]{babel}
+% \usepackage[Lenny]{fncychap}
+% \usepackage{listings}
+% \usepackage{multirow}
+% \usepackage{booktabs}
+% \usepackage[small,bf]{caption}
+% \usepackage{paralist} 
+% \usepackage{tocbibind}
+% \usepackage{fancyhdr} 
+% \usepackage{float} 
+
+% \graphicspath{{Figures/}}
+% 
+% \definecolor{light-gray}{gray}{0.90}
+% % Global settings, set caption for each listing 
+% \lstset{% bananas
+% 	language=Java,
+% 	tabsize=2,
+% 	captionpos=t,
+% 	backgroundcolor=\color{light-gray},
+% 	frame=tb,
+% 	breaklines=true,
+% 	basicstyle=\small}
+% % \lstset{keywordstyle=\color{red}\bfseries\emph} 
+% 
+% \newfloat{lstfloat}{thp}{1op}
+% \floatname{lstfloat}{Listing}
+% 
+% \author{Matteus~Magnusson \and Tobias~Hall}
+% \title{Adaptive Goal Oriented Action Planning for RTS Games}
+% \addresses{\groupname\\\deptname\\\univname}
+% \date{\today}
+% \subject{}
+% \keywords{}
+% \setlength{\parskip}{0em}
+% \setlength{\abovecaptionskip}{0em}
+% 
+% % fancier header
+% \newcommand{\fncyfront}{%
+% 	\pagestyle{plain}
+% 	\fancyhead[RO]{{\footnotesize\rightmark}}
+% 	\fancyfoot[RO]{\thepage}
+% 	%\fancyhead[LE]{{\footnotsize\leftmark}}
+% 	%\fancyfoot[LE]{\thepage}
+% 	%\fancyhead[RE,LO]{} 
+% 	\fancyhead[C]{}
+% 	\renewcommand{\headrulewidth}{0.3pt}}
+% \newcommand{\fncymain}{%
+% 	\pagestyle{fancy}
+% 	\fancyhead[RO]{}
+% 	\fancyfoot[RO]{}
+% 	%\fancyhead[LE]{{\footnotsize\leftmark}}
+% 	%\fancyfoot[LE]{\thepage}
+% 	%\fancyhead[C]{}
+% 	\renewcommand{\headrulewidth}{0.3pt}}
+% 
+% \makeindex
+% 
+% \begin{document}
+% \fncyfront
+% \frontmatter 
+% \maketitle
+% \newpage
+% \include{chapters/preface}
+% \begin{abstract}
+% 
+% \end{abstract}
+% \newpage
+% \tableofcontents
+% \listoffigures
+% \listoftables
+% \addtocontents{toc}{\vspace{1.5em}}  % Add a gap in the Contents, for aesthetics
+%  
+%  % ---- MAIN ----
+% \fncymain
+% \mainmatter
+% 
+% \include{chapters/introduction}
+% \include{chapters/brief_description}
+% \include{chapters/detailed_description}
+% \include{chapters/result}
+% \include{chapters/discussion}
+% \include{chapters/conclusion_and_future_work}
+% 
+% \newpage
+% 
+% % ---- BACK MATTER ----
+% \backmatter
+% \appendix 
+% \chapter{First appendix}
+% \printindex
+% 
+% \end{document}

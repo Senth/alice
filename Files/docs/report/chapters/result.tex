@@ -1,0 +1,39 @@
+\chapter[Result]{Result} 
+The support for Evolution RTS is rather low and there were some bugs with the
+Shard\footnote{Another thesis bot currently developed.} AI; thus we could not
+test Al Ice against it. However Al Ice was tested against RAI v0.601, which is a bot that supports
+multiple mods. The 'only' available documentation on RAI is the actual source code\cite{RAI10} with
+almost no comments. This makes it hard to describe and understand why RAI uses different strategies
+from time to time.
+
+The test was performed on three different maps;
+\begin{inparaenum}[1)]
+\item CaisRevenge is a smaller, but not symmetric map;
+\item DeltaSiegeDry which is medium sized symmetric map and is a very popular map on-line; and
+\item DeltaSiegeDryRevX\_v3 is actually the DeltaSiegeDry map but mirror at the bottom making
+doubling the size of the map.
+\end{inparaenum}
+To get a fairly good and equal result the test was run 10 times on each map where the AIs changed
+start position after 5 times. The fastest, longest, and medium time is calculated, where these
+values only applies when Al Ice won. The time format is minutes:seconds.
+
+\section{Bot Tests}
+\subsection{RAI} 
+The test results between Al Ice and RAI v0.601.
+\begin{table}[htb]
+\caption{Al Ice vs. RAI}
+\label{tab:alice_vs_rai}
+\begin{center}
+\begin{tabular}{r|c|c|c|c|c|c}
+\hline
+& Al Ice & RAI & \% & Medium & Fastest & Longest \\ \hline
+CaisRevenge & 10 & 0 & 100\% & 16:16 & 09:10 & 25:00 \\ \hline
+DeltaSiegeDry & 10 & 0 & 100\% & 20:27 & 08:57 & 31:55 \\ \hline 
+DeltaSiegeDryX\_v3 & 9 & 1 & 90\% & 23:13 & 08:32 & 38:21 \\ \hline 
+\end{tabular}
+\end{center}
+\end{table}
+As can be seen in table \ref{tab:alice_vs_rai} alice won all times except
+one match on the big map 'DeltaSiegeDryRevX\_v3' where Al Ice lost after half an
+hour. This sums up to approximately 97\% chance that Al Ice will win over RAI.
+

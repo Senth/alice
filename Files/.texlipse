@@ -1,0 +1,13 @@
+#TeXlipse project settings
+#Thu May 13 15:00:16 CEST 2010
+builderNum=2
+outputDir=docs/report/
+makeIndSty=
+bibrefDir=
+outputFormat=pdf
+tempDir=
+mainTexFile=adaptive_goal_oriented_action_planning_for_rts_games.tex
+outputFile=adaptive_goal_oriented_action_planning_for_rts_games.pdf
+langSpell=en
+markDer=true
+srcDir=docs/report/

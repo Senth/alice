@@ -1,0 +1,155 @@
+\chapter{Conclusion and Future Work}
+\section{Conclusion}
+An adaptive AI that doesn't cheat can beat a 'static' AI that does. However care must be taken when
+adjusting the priorities, and it can be rather hard to adjust the priorities to work for 'all'
+situations. With a better placement of buildings and attack algorithms it would probably be
+overwhelming for a human player to keep up with the micromanagement which would certainly be
+implemented in a real product.
+
+\subsection{Project/Archiceture conclusion}
+Creating a good architecture\index{architecture} that is maintainable and
+flexible from the beginning and plan for extra functionality helped us
+enourmously. This made it very easy for us to extend the functionality of
+many components when we needed. If a new feature was added a change was often
+only require in one or two classes, seldom more than two. See
+\ref{sec:architecture} for a class diagram of the architecture.
+
+We have both gained enormous experience working with this project; we understand a large amount of
+how the Spring API works, how much work and how hard it is to generate priorities for
+units---especially attacking units, how a task system can be implemented and used which isn't
+specific for the RTS genre, and a lot of other AI and non-AI related topics.
+
+\subsection{Things we would've done differently}
+In fact there aren't much that we wouldn't do the same. However there is one area that Al Ice isn't
+very good of, performance. It uses a lot more of CPU than other bots, that is mainly because most
+parts of the system isn't really optimized at all. However that wasn't a part of the
+problem, and with more time some of the performance problems when running with a faster
+speed could have been fixed. Playing as a human against Al Ice in normal speed wasn't any problem though.
+
+
+\section{Future work}
+There are many parts of Al Ice that can either be improved, added, or replaced entirely by something
+else. You can probably find several features that can be a base for thesis work.
+
+\subsection{Improvements to the current system}
+\subsubsection{Priority System} 
+\label{sec:priority_further_improvements}
+\paragraph{Optimized priority generation}
+Instead of generating priorities for all the units when we have an available
+builder it would be better to only generate priorities for the units that the
+available builder can build.
+
+\paragraph{More accurate unit priority}
+\label{sec:priority_improvement_accurate_unit_priority}
+The current priority system does not take into account our own DPS into the
+calculation of the damage type in the attack force priority, and armored
+buildings priority generation. The effect of this would be that we create many
+units that are good against the enemy's armor type, and when we have enough it
+would start to create units that are good against the second most used armor
+type. To get a more variety the units priority currently decreases with the
+number of units that we already have. However this will not make other units
+which share the same damage type get lower priority which is the desired effect.
+
+For anti-air units there could be some sort of threshold. I.e. Al Ice should always try to have a
+certain amount of anti-air units, even when no air units have been spotted. This base amount of
+anti-air units should get higher priority if an air unit has been seen. When the threshold is passed
+the calculation is done as now; anti-air units get a bonus priority depending on the size of the
+enemies' air units.
+
+Another approach is to insert a new armor type, flying, and a new damage type, anti-air. The damage
+multipliers for the all other damage types will be skipped in the priority calculation. The
+effect of this would make anti-air units have the lowest armor type health if they only consider the
+air units making them highest priority to create. However this functionality needs to be implemented
+with the improvement discussed above where our own DPS is taken into account. If it isn't taken into
+account it will make Al Ice to literally spit out anti-air units.
+
+\paragraph{Better economics priority over time}
+\label{sec:priority_improvement_better_economics_priority}
+Currently Al Ice will always try to increase it's current income linearly for metal and almost
+linearly for energy. However this algorithm has one major flaw, when an enemy destroys lots of
+resource buildings it will most certain make the AI to create resource buildings it top
+priority rather than creating a balanced amount of defensive and recourse buildings.
+
+\subsubsection{Task system and tasks}
+\index{task}\index{task system}
+\paragraph{More than one high-level task per task unit}
+Instead of only having one high-level task task units could have the ability to have different
+high-level tasks with priorities and a set of 'normal' tasks for each high-level task. This would
+have the similar effect of stacking tasks. E.g. a task-unit could have a high-level task 'attack'
+with a normal priority; the active tasks being MoveCloseTo (normal priority), and AttackTarget
+(high priority). Maybe the enemy decides to attack and our unit is close to the attacking position;
+making the General assign a new high-level task 'defend' with high priority to the unit; this would
+push the current stack of 'normal' tasks and a new empty set would be available where the unit would
+get a new MoveCloseTo task and AttackTarget task.
+
+\paragraph{Base attack}
+\index{base attacks}
+\subparagraph{'Checkpoints' to the target destination in base attack}
+The base attack task could be improved by having several regroup positions
+on the way to the target destination---now the units are scattered in a fine line due to the fact that units have different
+moving speed.
+
+\subparagraph{Advanced grouping}
+Instead of sharing the same attack target for all attacking units it could be split into the type of
+the damage type the unit has; creating one list for each kind. Then changing the
+\texttt{getcloseEnemy()} to \texttt{getCloseEnemy(damageType)}; this would make the derived classes
+able to chose different targets, i.e. those that are effective, for the different kinds of damage
+types---making Al Ice destroy targets quicker.
+
+The intention was that the attack target task should look for the best
+suitable enemy; e.g. if there are several enemy units in attack range, look for an enemy with an armor type that is weak to the
+units damage type. This way Al Ice would destroy it's enemies much faster and
+with minimal loss.
+ 
+\subsection{New Features}
+\subsubsection{Better path finding} Al Ice path finding and movement system relies on the path finding
+implement in Spring which is not advance at all; it only has a path finding for the terrain, but
+not the buildings placed on the map. Units using the internal Spring path finding can easily get
+stuck, if they try to move in the same direction they will still be stuck and might make more units
+get stuck. By implementing an overlay on the base path finding to include building avoidance, i.e.
+not try to move straight through buildings, many functions would function better.
+
+\subsubsection{Advanced terrain analysis}
+An implementation of advanced terrain analysis would probably improve the probability to beat the
+enemy. Flanking positions is one good example that would be useful, but most of all is probably
+where to build defensive (armored) buildings and regular buildings. A test could be conducted to
+battle this version of Al Ice and how important terrain analysis is.
+
+\subsubsection{Dynamic unit priority}
+One could implement a dynamic unit priority. 
+Dynamic meaning a unit priority system that would work on every modification
+based on the Spring engine. This will probably make the AI more attractive because of the popularity
+of the other mods.
+
+\subsubsection{Task priority and planning}
+Right now Al Ice does not plan or
+care about the future of the game, all priority calculation is just for the
+current moment and the General does only try to use all the resources at all
+time. If one implemented a task priority and a planner for the General. The planner could also be
+implemented without a pre-generated task priority, it would just analyze the outcome of executing
+the task and then adding a priority to the task.
+
+\subsubsection{Lua support}
+With Lua support it would be easy for more advanced 'users' to implement more functionality into Al
+Ice, mostly through tasks. With a planning system it would be relatively easy create new tasks and
+add them in the set used by Al Ice. It would also make the user able to customize its behaviour by
+maybe removing or replacing tasks.
+
+\subsubsection{Various team play features}
+As of now Al Ice will act as a stubborn child if a player or an AI plays with it; it wants
+everything for itself. A new feature could be the ability to play with others in the same team.
+Three different approaches could be used; One for interacting with other team-members that also are
+Al Ice, i.e. the two AI-players would act more or less as one; another approach when playing with
+other AIs probably that the other AI is the 'master', i.e. when it attacks Al Ice attacks; and the
+last approach when interacting with humans. The use of chat would be a great idea of interaction,
+whereas the player could assign the AI to do specific things; maybe build an big air attack group,
+or defend the base. It would also be possible to make Al Ice come up with plans itself; how to
+attack, what units to build, etc.
+
+The other aspect of team play is the enemy; how many players are there in a team and are there many
+teams? A good question would then be who to attack and could be implemented with the use of goals.
+
+\subsubsection{Playing at the same level as the opponent}
+Instead of always trying to do it's best the AI could be made more stupid when the opponent isn't as
+good with the goal to create a 50-50\% success rate. Creating an AI like this would make it more fun
+to play against, and as you get better it will also.

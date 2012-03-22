@@ -1,0 +1,34 @@
+\chapter[Brief Description]{Brief Description}
+
+\section{Architecture of Al Ice}
+The architecture consists of the \emph{General}\index{General} that is the mastermind in Al Ice. He
+forms plans; practically the same as creating various tasks\footnote{A task always wants to fulfill
+its goal---whether it is to move to a certain location with a unit or attack with a group of units.}
+that are supposed to lead it into a victorious defeat of the opponent. To do this it fetches
+information that has been collected about the enemy during game play to later decide, create, and run tasks with highest
+priority. Al Ice will always try to construct units that counter the opponents weapon and armor
+types.
+
+Except the general and tasks there is
+\begin{inparaenum}[\itshape a\upshape)]
+\item an agent for handling the enemy information that is updated when a unit enters line-of-sight.
+The agent also updates the enemy information about each second, such as the current position of the
+unit; 
+\item a task unit handler which handles all our task units---a task unit can simply be described as
+a wrapper between a unit from the spring engine and a set of tasks bound to the unit;
+\item extraction point mapping where information about the extraction points are held---if a point
+belongs to us, the enemy or is free; and
+\item the task handler that takes care of all the active and halted tasks. It also binds and unbinds
+the connection with task units and splits the load over several frames making it more CPU friendly.
+\end{inparaenum}
+
+\section{The Engine and Mod That Al Ice Runs On}
+Al Ice is implemented for the Spring
+engine \cite{Spring} with the modification \emph{Evolution RTS}\index{Evolution RTS}
+\cite{EvolutionRTS}. Spring is only an engine and does not come with a game; therefore a separate 'game', also called mod, needs to be
+downloaded. There are several games available and one of these is Evolution RTS that Al Ice is
+especially built for. An important side note is that Al Ice does not cheat in any sense, no extra
+resource, disabled fog of war\footnote{Fog of war being a 'fog' that lies over the battle making
+it impossible to see enemy units beyond our units' sight distance; thus disabled fog of war makes
+a player or AI able to see everything that happens on the map}, or any other kind of unfair
+advantages.

@@ -1,0 +1,37 @@
+\chapter[Introduction]{Introduction}
+Today there exists a large amount of games; and many of the larger games has some AI implemented in
+it. There exists many different kinds of AI; first person shooter, sports, board games, etc. If
+you're reading this you have probably played a game where you thought that the AI knew what you did
+even though it could not possibly see you---maybe it went straight to the house you resided in, or
+had some almighty power---more resources than it could possibly get under that time, even if it
+would play perfect in every sense. Some of these can easily be spotted whereas some are only
+spotted by the most skilled players that have played the game a lot. The current now flows towards
+minimizing the cheating for AI in games; however this often complicates problems--solutions a lot,
+making the game more CPU hungry.
+
+Good for us then that more and more of the CPU is used by the AI system. Physics will probably move
+to the graphics card in an early future---although physic support on the graphics card already
+exists, far from all games has support for it and if a game has the support the user still needs an
+extra graphics card. When the time is right the AI will hopefully get a decent amount of CPU to do
+some fancy work and act all natural without cheating, in fact it's hard to act as a human if it can
+cheat.
+
+Real-Time Strategy games are however still behind in this area, most AIs cheat and are statically
+written through state-machines and the likes. A newer approach is to base the AI on a goal
+oriented architecture. The AI will then select what goals are most beneficial and execute them.
+Most notably it gets a less static behaviour if implemented correctly. To be able to turn off the
+cheating a good resource handling is needed; which could be implemented through
+a goal meaning it would handle itself once implemented correctly. Some sort of scouting also needs to be done and then
+keep the information about the enemies' units, preferable where they are located. The scouting can
+be implemented using goals again, and the enemy information could be used with some sort of terrain
+analysis.
+
+
+In our AI, Al Ice, we're going to implement a simple goal-oriented system\footnote{We call it a
+task system; task and goal generally being the same thing.} with an adaptive behaviour---meaning it
+will create tasks that counter the enemies' behaviour. E.g. creating units that are good
+against the enemies' armada. The intention is to show that an adaptive goal
+oriented architecture can compete against the more traditional architecture
+(finite state machine system). The method of proving or disproving this
+hypothesis is to let the different systems play against each other and
+monitor the outcome. 

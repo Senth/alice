@@ -1,0 +1,2 @@
+#!/bin/bash
+ant -f ../SpringInstaller/build.xml -propertyfile ../SpringInstaller/ant.dependent.properties dist
